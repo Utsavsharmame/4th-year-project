@@ -53,6 +53,11 @@ const Navbar = () => {
 
          <div className='flex gap-x-4 items-center'>
 
+
+         </div>
+
+         <div className='flex gap-x-4 items-center'>
+
          </div>
 
            </div>
@@ -62,4 +67,8 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+
+
+//56.02
+
 

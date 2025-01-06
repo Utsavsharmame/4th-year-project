@@ -1,6 +1,10 @@
-/*
+/*  
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Codecraft Edtech Project
+=======
+#  StudyNotion Edtech Project
+>>>>>>> d4869c6 (updated code with the redux tool kit an store)
 =======
 # Codecraft-EdTech
 Full Stack EdTech platform using MERN stack
