@@ -1,8 +1,8 @@
 /*
 <<<<<<< HEAD
-# StudyNotion Edtech Project
+# Codecraft Edtech Project
 =======
-# StudyNotion-EdTech
+# Codecraft-EdTech
 Full Stack EdTech platform using MERN stack
 >>>>>>> 751135cacc979c8ffdbb7c75b78e66c7dbfbc596
 
@@ -14,7 +14,7 @@ To run this web on your computer, follow these steps:
 
 Clone the repository to your local machine.
 
-git clone https://github.com/AyushR97j/StudyNotion-EdTech.git
+git clone https://github.com/Utsavsharmame/4th-year-project
 Install the required packages. 
 
 npm install
