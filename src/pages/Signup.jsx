@@ -1,9 +1,33 @@
+
+
+/*
+import React from "react"
 import signupImg from "../assets/Images/signup.webp"
-import Template from "../components/Core/Auth/Template"
+import Template from "../components/core/Auth/Template"
+
+function Signup() {
+  return (
+    <Template
+      title="Join the millions learning to code with StudyNotion for free"
+      description1="Build skills for today, tomorrow, and beyond."
+      description2="Education to future-proof your career."
+      image={signupImg}
+      formType="signup"
+    />
+  )
+}
+
+export default Signup
+
+*/
+
+
+import signupImg from "../assets/Images/signup.webp"
+import Template from "../componenets/core/Auth/Template"
 import { useSelector } from "react-redux";
 
 function Signup() {
-  const {loading} = useSelector((state)   =>   state.auth);
+  const {loading} = useSelector((state)=>state.auth);
   return (
     loading?(<div className=" h-[100vh] flex justify-center items-center"><div class="custom-loader"></div></div>):(
     <Template
@@ -17,4 +41,4 @@ function Signup() {
   )
 }
 
-export default Signup;
+export default Signup

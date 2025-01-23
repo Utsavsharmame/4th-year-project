@@ -7,9 +7,11 @@ import { useSelector } from 'react-redux';
 import ProfileDropDown from '../core/Auth/ProfileDropDown';
 
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
+/*
 import { categories } from '../../services/apis';
-import { apiConnector } from '../../services/apiconnector';
+import { apiConnector } from '../../services/apiConnector';
 import { useEffect, useState } from 'react';
+*/
 import {IoIosArrowDropdownCircle} from "react-icons/io";
 
 

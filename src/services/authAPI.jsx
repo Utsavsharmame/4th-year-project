@@ -1,12 +1,11 @@
-
-
 import { toast } from "react-hot-toast"
 
-import { setLoading, setToken } from "../slices/authSlice"
-import { resetCart } from "../slices/cartSlice"
-import { setUser } from "../slices/profileSlice"
-import { apiConnector } from "./apiconnector"
+import { setLoading, setToken } from "../reducer/slices/authSlice"
+import { resetCart } from "../reducer/slices/cartSlice"
+import { setUser } from "../reducer/slices/profileSlice"
+import { apiConnector } from "./apiConnector"
 import { endpoints } from "./apis"
+
 
 const {
   SENDOTP_API,
@@ -133,26 +132,24 @@ export function logout(navigate) {
   }
 }
 
-
-
-export function getPasswordResetToken(email , setEmailSent) {
-  return async(dispatch) => {
+export function getPasswordResetToken(email, setEmailSent) {
+  return async (dispatch) => {
     dispatch(setLoading(true));
-    try{
+    try {
 
       // mail sent to user with otp
-      const response = await apiConnector("POST", RESETPASSTOKEN_API, {email,})
+      const response = await apiConnector("POST", RESETPASSTOKEN_API, { email, })
 
       console.log("RESET PASSWORD TOKEN RESPONSE....", response);
 
-      if(!response.data.success) {
+      if (!response.data.success) {
         throw new Error(response.data.message);
       }
 
       toast.success("Reset Email Sent successfully");
       setEmailSent(true);
     }
-    catch(error) {
+    catch (error) {
       console.log("RESET PASSWORD TOKEN Error", error);
       toast.error("Failed to send email for resetting password");
     }
@@ -161,21 +158,21 @@ export function getPasswordResetToken(email , setEmailSent) {
 }
 
 export function resetPassword(password, confirmPassword, token) {
-  return async(dispatch) => {
+  return async (dispatch) => {
     dispatch(setLoading(true));
-    try{
-      const response = await apiConnector("POST", RESETPASSWORD_API, {password, confirmPassword, token});
+    try {
+      const response = await apiConnector("POST", RESETPASSWORD_API, { password, confirmPassword, token });
 
       console.log("RESET Password RESPONSE ... ", response);
 
 
-      if(!response.data.success) {
+      if (!response.data.success) {
         throw new Error(response.data.message);
       }
 
       toast.success("Password has been reset successfully");
     }
-    catch(error) {
+    catch (error) {
       console.log("RESET PASSWORD TOKEN Error", error);
       toast.error("Unable to reset password");
     }
