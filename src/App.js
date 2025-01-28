@@ -14,6 +14,7 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import UpdatePassword from "./pages/UpdatePassword"
 import VerifyEmail from "./pages/VerifyEmail"
+import About from "./pages/About"
 // import { setProgress } from "./reducer/slices/loadingBarSlice";
 
 
@@ -26,10 +27,10 @@ function App() {
 
 
 
-      
+
       <Route path="/" element={<Home />} />
 
-        
+
         {/* Open Route - for Only Non Logged in User */}
         <Route
           path="login"
@@ -72,6 +73,16 @@ function App() {
             </OpenRoute>
           }
         />
+
+        <Route
+          path="about"
+          element={
+            <OpenRoute>
+              < About />
+            </OpenRoute>
+          }
+        />
+
       </Routes>
     </div>
   )
