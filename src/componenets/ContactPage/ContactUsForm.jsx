@@ -16,9 +16,9 @@ const ContactUsForm = () => {
   } = useForm()
 
   const submitContactForm = async (data) => {
-    // console.log("Form Data - ", data)
+    console.log("Form Data - ", data)
     try {
-      setLoading(true)
+      setLoading(true);
      /* const res = await apiConnector(
         "POST",
         contactusEndpoint.CONTACT_US_API,
@@ -28,7 +28,7 @@ const ContactUsForm = () => {
 
       const response = {status:"OK"};
       console.log("Logging response", response);
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
       setLoading(false)
@@ -49,7 +49,7 @@ const ContactUsForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-7"
+      className="flex flex-col gap-7 "
       onSubmit={handleSubmit(submitContactForm)}
     >
       <div className="flex flex-col gap-5 lg:flex-row">
@@ -71,6 +71,9 @@ const ContactUsForm = () => {
             </span>
           )}
         </div>
+
+
+
         <div className="flex flex-col gap-2 lg:w-[48%]">
           <label htmlFor="lastname" className="lable-style">
             Last Name
@@ -85,6 +88,8 @@ const ContactUsForm = () => {
           />
         </div>
       </div>
+
+
 
       <div className="flex flex-col gap-2">
         <label htmlFor="email" className="lable-style">
@@ -105,6 +110,7 @@ const ContactUsForm = () => {
         )}
       </div>
 
+       
       <div className="flex flex-col gap-2">
         <label htmlFor="phonenumber" className="lable-style">
           Phone Number
@@ -112,6 +118,7 @@ const ContactUsForm = () => {
 
         <div className="flex gap-5">
           <div className="flex w-[81px] flex-col gap-2">
+          {/* drop down tag */}
             <select
               type="text"
               name="firstname"
@@ -177,7 +184,7 @@ const ContactUsForm = () => {
       <button
         disabled={loading}
         type="submit"
-        className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
+        className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)]
          ${
            !loading &&
            "transition-all duration-200 hover:scale-95 hover:shadow-none"

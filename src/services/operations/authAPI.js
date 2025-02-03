@@ -189,3 +189,30 @@ export function logout(navigate) {
     navigate("/")
   }
 }
+
+
+export function forgotPassword(email,setEmailSent) {
+  return async (dispatch) => {
+    // const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
+    try {
+      const response = await apiConnector("POST", RESETPASSTOKEN_API, {
+        email,
+      })
+
+      console.log("FORGOTPASSWORD RESPONSE............", response)
+
+      if (!response.data.success) {
+        toast.error(response.data.message)
+        throw new Error(response.data.message)
+      }
+
+      toast.success("Reset Email Sent");
+      setEmailSent(true)
+    } catch (error) {
+      console.log("FORGOTPASSWORD ERROR............", error)
+    }
+    // toast.dismiss(toastId)
+    dispatch(setLoading(false))
+  }
+}

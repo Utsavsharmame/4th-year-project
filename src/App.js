@@ -15,6 +15,8 @@ import Signup from "./pages/Signup"
 import UpdatePassword from "./pages/UpdatePassword"
 import VerifyEmail from "./pages/VerifyEmail"
 import About from "./pages/About"
+import ContactUs from "./pages/ContactUs"
+import Footer from "./componenets/common/Footer"
 // import { setProgress } from "./reducer/slices/loadingBarSlice";
 
 
@@ -83,7 +85,20 @@ function App() {
           }
         />
 
+
+         <Route
+          path="contact"
+          element={
+            <OpenRoute>
+              < ContactUs />
+            </OpenRoute>
+          }
+        />
+
       </Routes>
+
+      <Footer />
+
     </div>
   )
 }

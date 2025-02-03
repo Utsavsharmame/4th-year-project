@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 4000;
 
 // Connecting to database
 database.connect();
- 
+
 // Middlewares
 app.use(express.json());
 app.use(cookieParser());
@@ -36,7 +36,7 @@ app.use(
 app.use(
 	fileUpload({
 		useTempFiles: true,
-		tempFileDir: "/tmp/",
+		tempFileDir: "/temp/",
 	})
 );
 
