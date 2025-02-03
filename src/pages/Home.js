@@ -77,7 +77,7 @@ const Home = () => {
               </div>
             }
 
-            
+
             subheading={
               "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
             }
@@ -181,12 +181,10 @@ const Home = () => {
       </div>
 
         {/* Section 3*/}
-  {/* Section 3 */}
-  <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
+  
+        <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
         {/* Become a instructor section */}
         <InstructorSection />
-
-
       </div>
 
       {/* Footer */}
