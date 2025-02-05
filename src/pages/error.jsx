@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-const ErrorPage = () => {
-    return (
-        <div>
-            <h1>Error: Page Not Found</h1>
-        </div>
-    );
-};
+const Error = () => {
+  return (
+    <div className='w-[100vw] h-[100vh] bg-richblack-800 flex justify-center items-center '>
+        <p className=' text-richblue-5 font-semibold text-4xl'>Error-404 
+        Page not found</p>
+    </div>
+  )
+}
 
-export default ErrorPage;
+export default Error

@@ -18,8 +18,10 @@ import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
 import Footer from "./componenets/common/Footer"
 // import { setProgress } from "./reducer/slices/loadingBarSlice";
-
-
+import MyProfile from "./componenets/core/Dashboard/MyProfile"
+import Dashboard from "./pages/Dashboard"
+import PrivateRoute from "./componenets/core/Auth/PrivateRoute"
+import Error from "./pages/error"
 function App() {
   return (
     <div className="flex min-h-screen w-screen flex-col bg-richblack-900 font-inter ">
@@ -87,13 +89,31 @@ function App() {
 
 
          <Route
-          path="contact"
+          path="/contact"
           element={
             <OpenRoute>
               < ContactUs />
             </OpenRoute>
           }
         />
+
+
+        <Route element={
+         <PrivateRoute>
+           <Dashboard />
+         </PrivateRoute>
+        }
+        >
+        
+         <Route path="dashboard/my-profile" element={<MyProfile/>}  />
+         </Route>
+
+
+       
+
+        <Route path="*"  element = {<Error/>} />
+
+
 
       </Routes>
 
