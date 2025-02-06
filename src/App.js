@@ -1,6 +1,8 @@
 import "./App.css"
 import { Route, Routes } from "react-router-dom"
 
+import {  useSelector } from "react-redux"
+
 import OpenRoute from "./componenets/core/Auth/OpenRoute"
 
 
@@ -22,7 +24,22 @@ import MyProfile from "./componenets/core/Dashboard/MyProfile"
 import Dashboard from "./pages/Dashboard"
 import PrivateRoute from "./componenets/core/Auth/PrivateRoute"
 import Error from "./pages/error"
+import Settings from "./componenets/core/Dashboard/Settings"
+import EnrolledCourses from "./componenets/core/Dashboard/EnrolledCourses"
+import Cart from "./componenets/core/Dashboard/Cart";
+import { ACCOUNT_TYPE } from "./utils/constants"
+
+
 function App() {
+
+ 
+  const { user } = useSelector((state) => state.profile)
+
+
+  
+   
+
+
   return (
     <div className="flex min-h-screen w-screen flex-col bg-richblack-900 font-inter ">
       <Navbar />
@@ -104,12 +121,35 @@ function App() {
          </PrivateRoute>
         }
         >
-        
+
          <Route path="dashboard/my-profile" element={<MyProfile/>}  />
-         </Route>
 
 
-       
+         <Route path = "dashboard/Settings" element= {<Settings />} />
+        
+
+
+
+
+                {/* Route only for Students */}
+          {
+            user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route
+                path="dashboard/enrolled-courses"
+                element={<EnrolledCourses />}
+              />
+              <Route path="/dashboard/cart" element={<Cart />} />
+            </>
+          )}
+          <Route path="dashboard/settings" element={<Settings />} />
+        </Route>
+
+                 // settings folder ke ander index.js me file H
+
+
+
+
 
         <Route path="*"  element = {<Error/>} />
 
@@ -122,4 +162,4 @@ function App() {
     </div>
   )
 }
-export default App
+export default App;
