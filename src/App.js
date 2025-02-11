@@ -28,16 +28,17 @@ import Settings from "./componenets/core/Dashboard/Settings"
 import EnrolledCourses from "./componenets/core/Dashboard/EnrolledCourses"
 import Cart from "./componenets/core/Dashboard/Cart";
 import { ACCOUNT_TYPE } from "./utils/constants"
+import AddCourse from "./componenets/core/Dashboard/AddCourse"
 
 
 function App() {
 
- 
+
   const { user } = useSelector((state) => state.profile)
 
 
-  
-   
+
+
 
 
   return (
@@ -126,7 +127,7 @@ function App() {
 
 
          <Route path = "dashboard/Settings" element= {<Settings />} />
-        
+
 
 
 
@@ -141,7 +142,28 @@ function App() {
               />
               <Route path="/dashboard/cart" element={<Cart />} />
             </>
-          )}
+          )
+
+          }
+
+          {/* Route only for Instructor */}
+
+          {
+            user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+            <>
+            <Route path="dashboard/add-course" element={<AddCourse />} />
+            
+            </>
+          )
+
+          }
+
+
+
+
+
+
+
           <Route path="dashboard/settings" element={<Settings />} />
         </Route>
 

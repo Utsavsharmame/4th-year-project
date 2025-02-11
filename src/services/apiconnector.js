@@ -4,7 +4,7 @@ export const axiosInstance = axios.create({});
 
 export const apiConnector = (method, url, bodyData, headers, params) => {
   console.log("API Call:", { method, url, bodyData, headers, params });
-  
+  /*
   if (!url) {
     console.error("URL is undefined");
     throw new Error("URL is required for API calls");
@@ -21,3 +21,14 @@ export const apiConnector = (method, url, bodyData, headers, params) => {
     throw error;
   });
 };
+*/
+
+return axiosInstance({
+  method: `${method}`,
+  url: `${url}`,
+  data: bodyData ? bodyData : null,
+  headers: headers ? headers : null,
+  params: params ? params : null,
+});
+};
+

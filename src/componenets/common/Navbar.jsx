@@ -17,15 +17,24 @@ import {IoIosArrowDropdownCircle} from "react-icons/io";
 
 
 const SubLinks = [
-  {
-    title: "python",
-    links: "/catalog/python"
-  },
-  {
-    title: "web dev",
-    links: "/catalog/web-development"
-  },
-]
+
+ 
+    {
+      title: "Python",
+      link: "/catalog/python",
+    },   {
+      title: "javascript",
+      link: "/catalog/javascript",
+   },
+    {
+    title: "web-development",
+      link: "/catalog/web-development",
+    },
+    {
+      title: "Android Development",
+      link: "/catalog/Android Development",
+    },
+  ];
 const Navbar = () => {
 
   // used selector hook
