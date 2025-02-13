@@ -4,35 +4,59 @@ import { useNavigate } from "react-router-dom"
 
 import { updateProfile } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../common/IconBtn"
-
+import { useEffect } from "react"
+import { getUserDetails } from "../../../../services/operations/profileAPI"
+import { setUser } from "../../../../reducer/slices/profileSlice"
 
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
 
 export default function EditProfile() {
-  const { user } = useSelector((state) => state.profile)
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+
+    dispatch(setUser(localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : ""));
+
+  }, [])
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
+
+
 
   const submitProfileForm = async (data) => {
-    // console.log("Form Data - ", data)
+    console.log("===========================sssssssssssssssssssssss");
+    console.log("Form Data ==> ", data)
     try {
       dispatch(updateProfile(token, data))
+
+
+
+      //const response = dispatch(getUserDetails(token,navigate))
+      //console.log("💚 response->", response);
+
+      //localStorage.setItem("token", JSON.stringify(response.data.token))
+      //console.log("response.data.updatedUserDetails[0]", response.data.updatedUserDetails[0]);
+      //localStorage.setItem("user", JSON.stringify(response.data.updatedUserDetails[0]));
+      //dispatch(setUser(localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : ""))
+
+      //console.log("user==>", user);
+
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+      console.log("ERROR MESSAGE ==> ", error.message)
     }
   }
   return (
     <>
       <form onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 " >
           <h2 className="text-lg font-semibold text-richblack-5">
             Profile Information
           </h2>
@@ -187,7 +211,7 @@ export default function EditProfile() {
             onClick={() => {
               navigate("/dashboard/my-profile")
             }}
-            className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
+            className="cursor-pointer   rounded-md bg-richblack-700 md:text-[13px] text-[10px]  py-2 px-1 md:py-2 md:px-5 font-semibold text-richblack-50"
           >
             Cancel
           </button>

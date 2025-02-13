@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import logo from '../../assets/Logo/Logo-Full-Light.png';
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { NavbarLinks } from '../../data/navbar-links';
@@ -7,18 +7,18 @@ import { useSelector } from 'react-redux';
 import ProfileDropDown from '../core/Auth/ProfileDropDown';
 
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
-/*
+
 import { categories } from '../../services/apis';
 import { apiConnector } from '../../services/apiConnector';
 import { useEffect, useState } from 'react';
-*/
+
 import {IoIosArrowDropdownCircle} from "react-icons/io";
 
 
 
 const SubLinks = [
 
- 
+
     {
       title: "Python",
       link: "/catalog/python",
@@ -35,6 +35,7 @@ const SubLinks = [
       link: "/catalog/Android Development",
     },
   ];
+  
 const Navbar = () => {
 
   // used selector hook

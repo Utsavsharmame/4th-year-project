@@ -18,7 +18,7 @@ exports.createCourse = async (req, res) => {
       courseDescription,
       whatYouWillLearn,
       price,
-      tag: _tag,
+       tag: _tag,
       category,
       status,
       instructions: _instructions,
