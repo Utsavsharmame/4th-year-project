@@ -345,25 +345,24 @@ const CourseInformationForm = () => {
             getValues={getValues}
           />
 
-          {/* Next Button */}
-          <div className="flex justify-end gap-x-2">
-            {editCourse && (
-              <button
-                onClick={() => dispatch(setStep(2))}
-                disabled={loading}
-                className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
-              >
-                Continue Wihout Saving
-              </button>
-            )}
-            <IconBtn
-              disabled={loading}
-              text={!editCourse ? "Next" : "Save Changes"}
-            >
-              <MdNavigateNext />
-            </IconBtn>
-          </div>
-
+        {/* Next Button */}
+      <div className="flex justify-end gap-x-2">
+        {editCourse && (
+          <button
+            onClick={() => dispatch(setStep(2))}
+            disabled={loading}
+            className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
+          >
+            Continue Wihout Saving
+          </button>
+        )}
+        <IconBtn
+          disabled={loading}
+          text={!editCourse ? "Next" : "Save Changes"}
+        >
+          <MdNavigateNext />
+        </IconBtn>
+      </div>
 
 
         </form>

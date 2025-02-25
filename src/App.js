@@ -29,7 +29,7 @@ import EnrolledCourses from "./componenets/core/Dashboard/EnrolledCourses"
 import Cart from "./componenets/core/Dashboard/Cart";
 import { ACCOUNT_TYPE } from "./utils/constants"
 import AddCourse from "./componenets/core/Dashboard/AddCourse"
-
+import MyCourses from "./componenets/core/Dashboard/MyCourses"
 
 function App() {
 
@@ -152,7 +152,8 @@ function App() {
             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
             <Route path="dashboard/add-course" element={<AddCourse />} />
-            
+            <Route path="dashboard/My-courses" element={<MyCourses/>} />
+
             </>
           )
 

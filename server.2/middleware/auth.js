@@ -13,6 +13,7 @@ exports.auth = async (req, res, next) => {
 			req.cookies.token ||
 			req.body.token ||
 			req.header("Authorization").replace("Bearer ", "");
+      console.log("After token extra")
 
 		// If JWT is missing, return 401 Unauthorized response
 		if (!token) {
@@ -62,7 +63,7 @@ exports.isStudent = async (req, res, next) => {
 
 //isAdmin
 exports.isAdmin = async (req, res, next) => {
-  try{    
+  try{
          console.log("Printing AccountType => ", req.user.accountType);
          if(req.user.accountType !== "Admin") {
              return res.status(401).json({
@@ -80,7 +81,7 @@ exports.isAdmin = async (req, res, next) => {
   }
  }
 
- 
+
 exports.isInstructor = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
@@ -100,4 +101,5 @@ exports.isInstructor = async (req, res, next) => {
 			.status(500)
 			.json({ success: false, message: `User Role Can't be Verified` });
 	}
-}; 
+};
+

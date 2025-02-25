@@ -122,6 +122,9 @@ exports.deleteSection = async (req, res) => {
       message: "Section deleted",
       data: course,
     })
+
+
+    
   } catch (error) {
     console.error("Error deleting section:", error)
     res.status(500).json({

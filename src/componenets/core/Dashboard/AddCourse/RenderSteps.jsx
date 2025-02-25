@@ -1,37 +1,36 @@
 import { FaCheck } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
-//import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm";
+import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm";
 import CourseInformationForm from "./CourseInformation/CourseInformationForm"
-//import PublishCourse from "./PublishCourse/PublishCourse";
-// import PublishCourse from "./PublishCourse";
+import PublishCourse from "./PublishCourse"
+//mport PublishCourse from "./PublishCourse";
 
-function RenderSteps() {
+const RenderSteps = () =>  {
 
 
     // getting step means 1,2,3 which state where you are currently while adding the course
-    const { step } = useSelector( (state) => state.course );
-
+    const {step} = useSelector((state)=> state.course);
     const steps = [
         {
-            id: 1,
+            id:1,
             title: "Course Information",
         },
         {
-            id: 2,
+            id:2,
             title: "Course Builder",
         },
         {
-            id: 3,
-            title: "Publish",
+            id:3,
+            title: "Publishing Course",
         },
-    ];
+    ]
 
     console.log("step ==>", step);
 
     return (
-        <>
-            <div className="relative mx-auto mb-2 flex w-[80%] md:w-full justify-center items-center">
+            <>
+              <div className="relative mx-auto mb-2 flex w-[80%] md:w-full justify-center items-center">
                 {steps.map((item) => (
                     <>
                         <div className="flex flex-col items-center " key={item.id}>
@@ -85,8 +84,8 @@ function RenderSteps() {
                 {step === 3 &&  <PublishCourse /> } */}
 
             {step === 1 && <CourseInformationForm />}
-            {/*step === 2 && <CourseBuilderForm />*/}
-           { /*step === 3 && <PublishCourse />*/}
+            {step === 2 && <CourseBuilderForm />}
+            {step === 3 && <PublishCourse />}
         </>
     );
 }
