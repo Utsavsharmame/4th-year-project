@@ -30,6 +30,7 @@ import Cart from "./componenets/core/Dashboard/Cart";
 import { ACCOUNT_TYPE } from "./utils/constants"
 import AddCourse from "./componenets/core/Dashboard/AddCourse"
 import MyCourses from "./componenets/core/Dashboard/MyCourses"
+import EditCourse from "./componenets/core/Dashboard/EditCourse"
 
 function App() {
 
@@ -153,6 +154,7 @@ function App() {
             <>
             <Route path="dashboard/add-course" element={<AddCourse />} />
             <Route path="dashboard/My-courses" element={<MyCourses/>} />
+            <Route path = "dashboard/edit-course/:courseId" element={<EditCourse/>}/>
 
             </>
           )
