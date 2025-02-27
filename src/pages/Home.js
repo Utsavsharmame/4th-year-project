@@ -189,6 +189,7 @@ const Home = () => {
 
       {/* Footer */}
      
+
     </div>
   )
 }
