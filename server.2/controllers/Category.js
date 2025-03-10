@@ -46,14 +46,14 @@ exports.showAllCategories = async (req, res) => {
 	}
 };
 
-//categoryPageDetails 
+//categoryPageDetails
 
 exports.categoryPageDetails = async (req, res) => {
     try {
       const { categoryId } = req.body
       console.log("PRINTING CATEGORY ID: ", categoryId);
 
-      
+
       // Get courses for the specified category
       const selectedCategory = await Category.findById(categoryId)
         .populate({
@@ -64,7 +64,7 @@ exports.categoryPageDetails = async (req, res) => {
         .exec();
 
         console.log("selectedCategory=>", selectedCategory);
-  
+
       //console.log("SELECTED COURSE", selectedCategory)
       // Handle the case when the category is not found
       if (!selectedCategory) {
@@ -81,7 +81,7 @@ exports.categoryPageDetails = async (req, res) => {
           message: "No courses found for the selected category.",
         })
       }
-  
+
       // Get courses for other categories
       const categoriesExceptSelected = await Category.find({
         _id: { $ne: categoryId },

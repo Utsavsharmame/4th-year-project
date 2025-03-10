@@ -1,6 +1,7 @@
 import React from "react"
 import { FaArrowRight } from "react-icons/fa6"
 import { Link } from "react-router-dom"
+import Logo from "../assets/Logo/Logo-Full-Light.png"
 
 import Banner from "../assets/Images/banner.mp4"
 import CTAButton from "../componenets/core/HomePage/Button"
@@ -188,7 +189,7 @@ const Home = () => {
       </div>
 
       {/* Footer */}
-     
+
 
     </div>
   )

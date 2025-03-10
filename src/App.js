@@ -31,6 +31,7 @@ import { ACCOUNT_TYPE } from "./utils/constants"
 import AddCourse from "./componenets/core/Dashboard/AddCourse"
 import MyCourses from "./componenets/core/Dashboard/MyCourses"
 import EditCourse from "./componenets/core/Dashboard/EditCourse"
+import Catalog from "./pages/Catalog"
 
 function App() {
 
@@ -52,6 +53,8 @@ function App() {
 
 
       <Route path="/" element={<Home />} />
+      <Route path="catalog/:catalogName" element={<Catalog />} />
+
 
 
         {/* Open Route - for Only Non Logged in User */}

@@ -34,7 +34,7 @@ exports.capturePayment = async (req, res) => {
       }
 
       // Check if the user is already enrolled in the course
-      const uid = new mongoose.Types.ObjectId(userId)
+      const uid = new mongoose.Types.ObjectId(userId);
       if (course.studentsEnroled.includes(uid)) {
         return res
           .status(200)
@@ -53,7 +53,8 @@ exports.capturePayment = async (req, res) => {
     amount: total_amount * 100,
     currency: "INR",
     receipt: Math.random(Date.now()).toString(),
-  }
+   
+  };
 
   try {
     // Initiate the payment using Razorpay
@@ -62,6 +63,7 @@ exports.capturePayment = async (req, res) => {
     res.json({
       success: true,
       data: paymentResponse,
+
     })
   } catch (error) {
     console.log(error)
@@ -98,12 +100,21 @@ exports.verifyPayment = async (req, res) => {
     .digest("hex")
 
   if (expectedSignature === razorpay_signature) {
+    // enrol the student in the courses
+
     await enrollStudents(courses, userId, res)
+
+    // return success response
+
     return res.status(200).json({ success: true, message: "Payment Verified" })
   }
 
   return res.status(200).json({ success: false, message: "Payment Failed" })
 }
+
+
+
+
 
 // Send Payment Success Email
 exports.sendPaymentSuccessEmail = async (req, res) => {
