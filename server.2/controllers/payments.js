@@ -14,6 +14,13 @@ const CourseProgress = require("../models/CourseProgress")
 exports.capturePayment = async (req, res) => {
   const { courses } = req.body
   const userId = req.user.id
+
+  if (!courses || courses.length === 0) {
+    return res.json({ success: false, message: "Please Provide Course ID" })
+  }
+
+
+
   if (courses.length === 0) {
     return res.json({ success: false, message: "Please Provide Course ID" })
   }
@@ -24,6 +31,8 @@ exports.capturePayment = async (req, res) => {
     let course
     try {
       // Find the course by its ID
+      console.log("TYPE OF COURSEID",typeof(course_id));
+
       course = await Course.findById(course_id)
 
       // If the course is not found, return an error
@@ -48,10 +57,10 @@ exports.capturePayment = async (req, res) => {
       return res.status(500).json({ success: false, message: error.message })
     }
   }
-
+  const currency = "INR";
   const options = {
     amount: total_amount * 100,
-    currency: "INR",
+    currency,
     receipt: Math.random(Date.now()).toString(),
    
   };

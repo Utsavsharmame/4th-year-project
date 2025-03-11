@@ -32,6 +32,7 @@ import AddCourse from "./componenets/core/Dashboard/AddCourse"
 import MyCourses from "./componenets/core/Dashboard/MyCourses"
 import EditCourse from "./componenets/core/Dashboard/EditCourse"
 import Catalog from "./pages/Catalog"
+import CourseDetails from "./pages/CourseDetails";
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
 
       <Route path="/" element={<Home />} />
       <Route path="catalog/:catalogName" element={<Catalog />} />
+      <Route path="courses/:courseId" element={<CourseDetails />} />
 
 
 
