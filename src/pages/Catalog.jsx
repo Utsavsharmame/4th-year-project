@@ -24,13 +24,13 @@ function Catalog() {
   useEffect(() => {
 
     const getCategories = async () => {
-   
+
         const res = await apiConnector("GET", categories.CATEGORIES_API)
         const category_id = res?.data?.data?.filter(
           (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
         )[0]._id
         setCategoryId(category_id);
-     
+
     }
     getCategories();
   }, [catalogName]);
@@ -39,7 +39,7 @@ function Catalog() {
 
   useEffect(() => {
     const getCategoryDetails = async () => {
-   
+
         try {
           const res = await getCatalogaPageData(categoryId);
           console.log("Printing res: ", res);
@@ -51,7 +51,7 @@ function Catalog() {
     if(categoryId){
       getCategoryDetails();
     }
-    
+
   }, [categoryId]);
 
 

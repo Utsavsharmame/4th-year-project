@@ -1,11 +1,11 @@
- import { studentEndpoints } from "../apis";
+import { studentEndpoints } from "../apis";
  import { apiConnector } from "../apiConnector";
  // import { toast } from " react-hot-toast";
  import rzpLogo from "../../assets/Logo/rzp_logo.png";
 import {toast} from "react-hot-toast";
-import setPaymentLoading from "../../reducer/slices/courseSlice";
+import {setPaymentLoading} from "../../reducer/slices/courseSlice";
 
-import resetCart from "../../reducer/slices/cartSlice";
+import {resetCart} from "../../reducer/slices/cartSlice";
 
 
 
@@ -30,7 +30,7 @@ import resetCart from "../../reducer/slices/cartSlice";
 export async function buyCourse(token, courses, userDetails, navigate, dispatch) {
   const toastId = toast.loading('Loading...');
   try{
-    // load the script 
+    // load the script
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
 
     if(!res){
@@ -39,49 +39,43 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
 
     }
     // initize the order
-    const orderResponse = await apiConnector("POST", COURSE_PAYMENT_API, {courses},
-      {
-        Authorization: `Bearer ${token}`,
-      }
+    const orderResponse = await apiConnector("POST", COURSE_PAYMENT_API, { courses }, {
+      Authorization: `Bearer ${token}`,
+    });
 
-    );
+    console.log("Full Order Response:", orderResponse);
 
-
-    if(!orderResponse.data.success){
-      throw new Error(orderResponse.data.message);
-
+    if (!orderResponse.data || !orderResponse.data.data) {
+      console.error("Invalid API Response:", orderResponse);
+      throw new Error("Invalid response from the payment API");
     }
-    console.log("PRINTING orderResponse", orderResponse);
-    
 
-    // options
+    const paymentDetails = orderResponse.data.data;
+    const { currency, amount, id } = paymentDetails;
 
-    const options= {
+    if (!currency || !amount || !id) {
+      console.error("Missing Payment Details:", paymentDetails);
+      throw new Error("Missing required payment details in the API response");
+    }
+
+    const options = {
       key: process.env.RAZORPAY_KEY,
-      
-      currency : orderResponse.data.message.currency,
-      amount : `${orderResponse.data.message.amount}`,
-      order_id : orderResponse.data.message.id ,
+      currency,
+      amount: `${amount}`,
+      order_id: id,
       name: "CodeCraft",
       description: "Thank you for buying the course",
       image: rzpLogo,
-
       prefill: {
-        name: `${userDetails.firstName}` ,
-        email: userDetails.email
+        name: `${userDetails.firstName}`,
+        email: userDetails.email,
       },
+      handler: function (response) {
+        sendPaymentSuccessEmail(response, amount, token);
+        verifyPayment({ ...response, courses }, token, navigate, dispatch);
+      },
+    };
 
-      handler: function(response) {
-        // send  sucessful email
-        sendPaymentSuccessEmail(response, orderResponse.data.data.amount, token );
-
-        // verify payment
-        verifyPayment({...response,courses}, token, navigate, dispatch);
-      }
-
-    } 
-    
-    
     // NOW OPEN THE RAZORPAY SDK
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
@@ -98,7 +92,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
 
     toast.error('Could not make the payment');
   }
- 
+
     toast.dismiss(toastId);
 }
 
@@ -107,13 +101,13 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
      await apiConnector("POST", SEND_PAYMENT_SUCCESS_EMAIL_API,
        {
         orderId: response.razorpay_order_id,
-       paymentId: response.razorpay_payment_id, 
+       paymentId: response.razorpay_payment_id,
        amount
        },{
           Authorization: `Bearer ${token}`,
        });
 
-  
+
  }
  catch(error){
   console.log("PAYMENT SUCCESS EMAIL ERROR...", error);
@@ -138,7 +132,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
   navigate("/dashboard/enrolled-courses");
   dispatch(resetCart());
 
- 
+
 }
 
 catch(error){
