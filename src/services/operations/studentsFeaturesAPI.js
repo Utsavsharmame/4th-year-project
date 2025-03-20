@@ -39,7 +39,8 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
 
     }
     // initize the order
-    const orderResponse = await apiConnector("POST", COURSE_PAYMENT_API, { courses }, {
+    const orderResponse = await apiConnector("POST", COURSE_PAYMENT_API, { courses },
+       {
       Authorization: `Bearer ${token}`,
     });
 
