@@ -33,6 +33,7 @@ import MyCourses from "./componenets/core/Dashboard/MyCourses"
 import EditCourse from "./componenets/core/Dashboard/EditCourse"
 import Catalog from "./pages/Catalog"
 import CourseDetails from "./pages/CourseDetails";
+import ViewCourse from "./pages/ViewCourse"
 
 function App() {
 
@@ -179,7 +180,26 @@ function App() {
                  // settings folder ke ander index.js me file H
 
 
+             <Route element = {
+              <priveteRoute>
+                <ViewCourse/>
 
+              </priveteRoute>
+             }>
+
+             {
+                user?.accountType === ACCOUNT_TYPE.STUDENT && (
+                  <>
+                  <Route 
+                  path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                   element={<videoDetails />} 
+
+                   />
+                  </>
+                )
+             }
+
+             </Route>
 
 
         <Route path="*"  element = {<Error/>} />
