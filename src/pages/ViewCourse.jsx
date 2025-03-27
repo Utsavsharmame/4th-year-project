@@ -3,11 +3,14 @@ import { Outlet, useParams } from 'react-router-dom';
 import { getFullDetailsOfCourse } from '../services/operations/courseDetailsAPI';
 import { setCompletedLectures, setCourseSectionData, setEntireCourseData } from '../reducer/slices/viewCourseSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import VideoDetailsSidebar from '../componenets/core/viewCourse/videoDetailsSidebar';
+import CourseReviewModal from '../componenets/core/viewCourse/CourseReviewModal';
 
 
 
 
 const ViewCourse = () => {
+  
   const [reviewModal, setReviewModal] =  useState(false);
   const  {courseId} = useParams();
   const {token}= useSelector((state)=>state.auth);
@@ -27,12 +30,13 @@ const ViewCourse = () => {
       dispatch(setTotalNoOfLectures(lectures));
 
     }
+    setCourseSpecificDetails();
     }, []);
-  
+
 
 
   return (
-    
+
     <>
       <div>
         <VideoDetailsSidebar  setReviewModal={setReviewModal}/>
