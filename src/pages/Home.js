@@ -12,6 +12,14 @@ import LearningLanguageSection from "../componenets/core/HomePage/LearningLangua
 import TimelineSection from "../componenets/core/HomePage/TimelineSection"
 import Footer from "../componenets/common/Footer"
 import ExploreMore from "../componenets/core/HomePage/ExploreMore"
+import ReviewSlider from "../componenets/common/ReviewSlider";
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+
+
+
+
 const Home = () => {
   return (
     <div>
@@ -186,6 +194,14 @@ const Home = () => {
         <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
         {/* Become a instructor section */}
         <InstructorSection />
+
+        {/* Reviews Slider Here */}
+        <ReviewSlider />
+
+
+
+
+
       </div>
 
       {/* Footer */}

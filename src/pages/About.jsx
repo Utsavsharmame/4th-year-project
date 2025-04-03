@@ -10,6 +10,10 @@ import LearningGrid from "../componenets/core/AboutPage/LearningGrid"
 import Quote from "../componenets/core/AboutPage/Quote"
 import StatsComponent from "../componenets/core/AboutPage/Stats"
 import HighlightText from "../componenets/core/HomePage/HightlightText"
+import ReviewSlider from "../componenets/common/ReviewSlider";
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 
 const About = () => {
   return (
@@ -131,6 +135,9 @@ const About = () => {
         <div>
           Reviews from other learners
           {/* <ReviewSlider /> */}
+          <ReviewSlider />
+
+
         </div>
       </section>
 

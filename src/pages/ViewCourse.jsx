@@ -1,53 +1,54 @@
-import React ,{useState, useEffect}from 'react';
-import { Outlet, useParams } from 'react-router-dom';
-import { getFullDetailsOfCourse } from '../services/operations/courseDetailsAPI';
-import { setCompletedLectures, setCourseSectionData, setEntireCourseData } from '../reducer/slices/viewCourseSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import VideoDetailsSidebar from '../componenets/core/viewCourse/videoDetailsSidebar';
-import CourseReviewModal from '../componenets/core/viewCourse/CourseReviewModal';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useParams } from "react-router-dom";
+import { getFullDetailsOfCourse } from "../services/operations/courseDetailsAPI";
+import { setCompletedLectures, setCourseSectionData, setEntireCourseData, setTotalNoOfLectures } from "../reducer/slices/viewCourseSlice";
+import VideoDetailsSidebar from "../componenets/core/ViewCourse/VideoDetailsSidebar";
+import CourseReviewModal from "../componenets/core/ViewCourse/CourseReviewModal";
+
+const ViewCourse = () =>{
+
+    const [reviewModal, setReviewModal] = useState(false) ;
+    const {courseId, sectionId, subSectionId} = useParams();
+
+    const {token} = useSelector((state) => state.auth) ;
+    const dispatch = useDispatch() ;
+
+    useEffect(()=>{
 
 
+      const setCourseSpecificDetails = async () =>{
 
+        const courseData = await getFullDetailsOfCourse(courseId, token);
+        dispatch(setCourseSectionData(courseData?.courseDetails?.courseContent) );
+        dispatch(setEntireCourseData(courseData?.courseDetails));
+        dispatch(setCompletedLectures(courseData?.completedVideos));
 
-const ViewCourse = () => {
-  
-  const [reviewModal, setReviewModal] =  useState(false);
-  const  {courseId} = useParams();
-  const {token}= useSelector((state)=>state.auth);
-  const dispatch = useDispatch();
+        let lectures = 0 ;
+        courseData?.courseDetails?.courseContent?.forEach((sec)=> {
+          lectures += sec.subSection.length ;
+        })
+        dispatch(setTotalNoOfLectures(lectures));
+      }
 
-  useEffect(()=>{
-    const setCourseSpecificDetails = async()=>{
-      const courseData = await getFullDetailsOfCourse(courseId, token);
-      dispatch(setCourseSectionData(courseData.courseDetails.courseContents));
-      dispatch(setEntireCourseData(courseData.courseDetails));
-      dispatch(setCompletedLectures(courseData.completedVideos));
+      setCourseSpecificDetails();
 
-      let lectures = 0;
-      courseData?.courseDetails?.courseContents?.forEach((sec) => {
-        lectures += sec.subSection.length
-      })
-      dispatch(setTotalNoOfLectures(lectures));
-
-    }
-    setCourseSpecificDetails();
     }, []);
 
 
-
-  return (
-
+    return(
     <>
-      <div>
-        <VideoDetailsSidebar  setReviewModal={setReviewModal}/>
-
-        <div>
-          <Outlet />
+      <div className="relative flex min-h-[calc(100vh-3.5rem)]">
+        <VideoDetailsSidebar reviewModal={reviewModal} setReviewModal={setReviewModal} />
+        <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto">
+          <div className="mx-6">
+            <Outlet />
+          </div>
         </div>
       </div>
       {reviewModal && <CourseReviewModal setReviewModal={setReviewModal} />}
     </>
-  );
-};
+    )
+}
 
-export default ViewCourse;
+export default ViewCourse ;

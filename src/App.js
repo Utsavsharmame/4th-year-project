@@ -1,7 +1,7 @@
 import "./App.css"
-import { Route, Routes } from "react-router-dom"
-
-import {  useSelector } from "react-redux"
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form"; // Correct import
+import { useSelector, useDispatch } from "react-redux" // Import dispatch
 
 import OpenRoute from "./componenets/core/Auth/OpenRoute"
 
@@ -33,15 +33,21 @@ import MyCourses from "./componenets/core/Dashboard/MyCourses"
 import EditCourse from "./componenets/core/Dashboard/EditCourse"
 import Catalog from "./pages/Catalog"
 import CourseDetails from "./pages/CourseDetails";
-import ViewCourse from "./pages/ViewCourse"
-import VideoDetails from "./componenets/core/viewCourse/videoDetails"
+import ViewCourse from "./pages/ViewCourse";
+import VideoDetails  from "./componenets/core/ViewCourse/VideoDetails";
+import { Instrucutor } from "./componenets/core/Dashboard/InstructorDashboard/Instructor";
+
 
 
 
 function App() {
 
 
-  const { user } = useSelector((state) => state.profile)
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate() ;
+
+  const {user} = useSelector((state)=> state.profile);
 
 
 
@@ -102,13 +108,13 @@ function App() {
           path="verify-email"
           element={
             <OpenRoute>
-              < VerifyEmail />
+              <VerifyEmail />
             </OpenRoute>
           }
         />
 
         <Route
-          path="about"
+          path="/about"
           element={
             <OpenRoute>
               < About />
@@ -137,6 +143,7 @@ function App() {
          <Route path="dashboard/my-profile" element={<MyProfile/>}  />
 
 
+
          <Route path = "dashboard/Settings" element= {<Settings />} />
 
 
@@ -162,6 +169,9 @@ function App() {
           {
             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
+
+            <Route path="/dashboard/instructor" element={<Instrucutor />} />
+
             <Route path="dashboard/add-course" element={<AddCourse />} />
             <Route path="dashboard/My-courses" element={<MyCourses/>} />
             <Route path = "dashboard/edit-course/:courseId" element={<EditCourse/>}/>
@@ -183,6 +193,10 @@ function App() {
                  // settings folder ke ander index.js me file H
 
 
+                 <Route path="/courses/:courseId" element={<CourseDetails/> } />
+
+
+
              <Route element = {
               <priveteRoute>
                 <ViewCourse/>
@@ -190,17 +204,13 @@ function App() {
               </priveteRoute>
              }>
 
-             {
-                user?.accountType === ACCOUNT_TYPE.STUDENT && (
-                  <>
-                  <Route
-                  path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
-                   element={<videoDetails />}
-
-                   />
-                  </>
-                )
-             }
+{
+              user?.accountType === ACCOUNT_TYPE.STUDENT && (
+                <>
+                  <Route path="/view-course/:courseId/section/:sectionId/sub-section/:subSectionId" element={<VideoDetails />} />
+                </>
+              )
+            }
 
              </Route>
 
@@ -212,7 +222,6 @@ function App() {
       </Routes>
 
       <Footer />
-
     </div>
   )
 }

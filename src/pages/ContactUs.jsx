@@ -13,7 +13,7 @@ const ContactUs = () => {
                     <h1 className="text-lg font-semibold text-richblack-5">Chat on us</h1>
                     </div>
                     <p className='font-medium'>Our friendly team is here to help.</p>
-                    <p className='font-semibold'>info@CodeCraft.com</p>
+                    <p className='font-semibold'>info@studynotion.com</p>
                 </div>
                 <div className="flex flex-col gap-[2px] p-3 text-sm text-richblack-200">
                     <div className='flex flex-row items-center gap-3'>
@@ -21,7 +21,7 @@ const ContactUs = () => {
                     <h1 className="text-lg font-semibold text-richblack-5">Visit us</h1>
                     </div>
                     <p className='font-medium'>Come and say hello at our office HQ.</p>
-                    <p className='font-semibold'>Near Datta Mandir, Hanuman Nagar, Kandivali East,  Mumbai:- 400101</p>
+                    <p className='font-semibold'>Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016</p>
                 </div>
                 <div className="flex flex-col gap-[2px] p-3 text-sm text-richblack-200">
                     <div className='flex flex-row items-center gap-3'>

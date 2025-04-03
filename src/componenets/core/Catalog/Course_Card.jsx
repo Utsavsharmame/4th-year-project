@@ -9,7 +9,7 @@ import RatingStars from "../../common/RatingStars";
 
 
 const Course_Card = ({ course, Height }) => {
-   
+
   const [avgReviewCount, setAvgReviewCount] = useState(0);
 
   useEffect(() => {
@@ -27,10 +27,10 @@ const Course_Card = ({ course, Height }) => {
       <Link to={`/course/${course._id}`}>
         <div>
           <div>
-            <img 
+            <img
             src={course?.thumbnail}
             alt="course ka thumbnail"
-            className={`${Height} w-full rounded-xl object-cover`} 
+            className={`${Height} w-full rounded-xl object-cover`}
 
             />
           </div>
